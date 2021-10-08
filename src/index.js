@@ -1,3 +1,4 @@
+import MovieDetailsPage from './pages/movieDetailsPage'
 import React from "react";
 import ReactDOM from "react-dom";
 import HomePage from "./pages/homePage";
@@ -40,6 +41,7 @@ const sample = {
     "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.",
   popularity: 44.208,
   poster_path: "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
+  
   production_companies: [
     {
       id: 1,
@@ -81,13 +83,20 @@ const sample = {
   video: false,
   vote_average: 7,
   vote_count: 9692,
+
+  const : images = [
+    "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
+    "/v1QQKq8M0fWxMgSdGOX1aCv8qMB.jpg",
+    "/2iGN0aKHJYD0xQydlfuCUAcgNbO.jpg",
+    "/rjBwhsOzHKUw2NIOrE7aMqjfe6s.jpg",
+  ],
 };
 
 const movies = [sample, sample, sample, sample, sample, sample, sample];
 
 const App = () => {
   return (
-      <HomePage movies={movies} />
+    <MovieDetailsPage movie={sample} images={images} />
   );
 };
 
