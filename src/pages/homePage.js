@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/headerMovieList";
 import FilterCard from "../components/filterMoviesCard";
 import Grid from "@material-ui/core/Grid";
@@ -18,6 +18,13 @@ const MovieListPage = (props) => {
   const [genreFilter, setGenreFilter] = useState("0");
 
   const genreId = Number(genreFilter);
+
+  const addToFavorites = (movieId) => {
+    const updatedMovies = movies.map((m) =>
+      m.id === movieId ? { ...m, favorite: true } : m
+    );
+    setMovies(updatedMovies);
+  };
 
   let displayedMovies = movies
     .filter((m) => {
@@ -60,7 +67,7 @@ const MovieListPage = (props) => {
       genreFilter={genreFilter}
     />
         </Grid>
-        <MovieList movies={displayedMovies}></MovieList>
+        <MovieList movies={displayedMovies} selectFavorite={addToFavorites}></MovieList>
       </Grid>
     </Grid>
   );
