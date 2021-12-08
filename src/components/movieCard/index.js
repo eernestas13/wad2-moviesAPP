@@ -16,6 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -23,11 +24,15 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
+  avatar2: {
+    backgroundColor: "rgb(255, 0, 0)",
+  },
 });
 
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
   const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { watchlists, addToWatchlists} = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -35,9 +40,22 @@ export default function MovieCard({ movie, action }) {
     movie.favorite = false
   }
 
+  /*
+  if (watchlists.find((id) => id === movie.id)) {
+    movie.watchlist = true;
+  } else {
+    movie.watchlist = false
+  }
+  */
+
   const handleAddToFavorite = (e) => {
     e.preventDefault();
     addToFavorites(movie);
+  };
+
+  const handleAddToWatchlist= (e) => {
+    e.preventDefault();
+    addToWatchlists(movie);
   };
 
   return (
@@ -48,6 +66,13 @@ export default function MovieCard({ movie, action }) {
         movie.favorite ? (
           <Avatar className={classes.avatar}>
             <FavoriteIcon />
+          </Avatar>
+        ) : null
+      }
+      avatar2={
+        movie.watchlist ? (
+          <Avatar className={classes.avatar2}>
+            <PlaylistAddIcon />
           </Avatar>
         ) : null
       }
