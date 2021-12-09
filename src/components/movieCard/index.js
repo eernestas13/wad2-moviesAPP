@@ -47,6 +47,7 @@ export default function MovieCard({ movie, action }) {
     movie.watchlist = false
   }
   */
+  
 
   const handleAddToFavorite = (e) => {
     e.preventDefault();

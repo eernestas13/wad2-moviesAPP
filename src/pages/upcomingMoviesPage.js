@@ -36,7 +36,7 @@ const UpcomingMoviesPage = (props) => {
 */
 
 const UpcomingMoviesPage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('discover', getUpcomingMovies)
+  const {  data, error, isLoading, isError }  = useQuery('newdiscover', getUpcomingMovies)
 
   if (isLoading) {
     return <Spinner />

@@ -14,7 +14,7 @@ const WatchlistMoviesPage = () => {
   const watchlistMovieQueries = useQueries(
     movieIds.map((movieId) => {
       return {
-        queryKey: ["movie", { id: movieId }],
+        queryKey: ["Wmovie", { id: movieId }],
         queryFn: getMovie,
       };
     })
