@@ -81,7 +81,7 @@ No changes were made to storybook.
 
 ![ ](./src/images/watchlist.png) (Zoom at 75%)
 
->New app page, TLogin. This page allows a user to log into the website.
+>New app page, Login. This page allows a user to log into the website.
 
 ![ ](./src/images/login.png) (Zoom at 75%)
 
