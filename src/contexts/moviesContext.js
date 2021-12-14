@@ -6,7 +6,14 @@ const MoviesContextProvider = (props) => {
     const [myReviews, setMyReviews] = useState( {} ) 
     const [favorites, setFavorites] = useState( [] );
     const [watchlists, setWatchlists] = useState( [] );
+   // const [similars, goToSimilarMovies] = useState( {} );
     
+   /* const goSimilars = (movie) => {
+      goToSimilarMovies([...similars,movie.id])
+    }; 
+    */
+   
+  
   const addToFavorites = (movie) => {
     setFavorites([...favorites,movie.id])
   };
@@ -36,6 +43,8 @@ const MoviesContextProvider = (props) => {
       value={{
         favorites,
         watchlists,
+        //similars,
+        //goSimilars,
         addToFavorites,
         addToWatchlists,
         removeFromFavorites,

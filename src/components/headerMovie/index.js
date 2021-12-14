@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
     flexWrap: "wrap",
-    padding: theme.spacing(1.5),
+    padding: theme.spacing(2),
     margin: 0,
   },
   tagLine: {
@@ -27,19 +27,19 @@ const MovieHeader = ( { movie, history}) => {
   return (
     <Paper component="div" className={classes.root}>
       <IconButton aria-label="go back" onClick={() => history.goBack()} >
-        <ArrowBackIcon color="primary" fontSize="large" />
+        <ArrowBackIcon color="Black" fontSize="large" />
       </IconButton>
 
       <Typography variant="h4" component="h3">
         {movie.title}
         <a href={movie.homepage}>
-          <HomeIcon color="primary" />
+          <HomeIcon color="Black" fontSize="large" margin-left= "1em" />
         </a>
         <br />
-        <span className={classes.tagLine}>{`   "${movie.tagline}"`} </span>
+        <span className={classes.tagLine}>{`   ${movie.tagline}    `}     </span>
       </Typography>
       <IconButton aria-label="go forward" onClick={() => history.goForward() } >
-        <ArrowForwardIcon color="primary" fontSize="large" />
+        <ArrowForwardIcon color="Black" fontSize="large" />
       </IconButton>
     </Paper>
   );

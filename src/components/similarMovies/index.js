@@ -8,7 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
-import { getMovieReviews } from "../../api/tmdb-api";
+import { getSimilarMovies } from "../../api/tmdb-api";
 import { excerpt } from "../../util";
 
 const useStyles = makeStyles({
@@ -17,43 +17,42 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MovieReviews({ movie }) {
+export default function SimilarMovies({ movie }) {
   const classes = useStyles();
-  const [reviews, setReviews] = useState([]);
+  const [similars, setSimilars] = useState([]);
+
   
 
   useEffect(() => {
-    getMovieReviews(movie.id).then((reviews) => {
-      setReviews(reviews);
+    getSimilarMovies(movie.id).then((similars) => {
+      setSimilars(similars);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="reviews table">
         <TableHead>
           <TableRow>
-            <TableCell align="left"><h4>Author</h4></TableCell>
-            <TableCell align="center"><h4>Review</h4></TableCell>
-            <TableCell align="right"><h4>More Info</h4></TableCell>
+            <TableCell >Author</TableCell>
+            <TableCell align="center">Excerpt</TableCell>
+            <TableCell align="right">More</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {reviews.map((r) => (
-            <TableRow key={r.id}>
+          {similars.map((s) => (
+            <TableRow key={s.id}>
               <TableCell component="th" scope="row">
-                {r.author}
+                {s.author}
               </TableCell>
-              <TableCell >{excerpt(r.content)}</TableCell>
+              <TableCell >{excerpt(s.content)}</TableCell>
               <TableCell >
                 <Link
                   to={{
-                    pathname: `/reviews/${r.id}`,
+                    pathname: `/similar/${s.id}`,
                     state: {
-                      review: r,
+                      review: s,
                       movie: movie,
                     },
                   }}

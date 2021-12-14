@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from "../movieReviews"
+import SimilarMovies from "../similarMovies";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+  },
+  fab2: {
+    position: "fixed",
+    bottom: theme.spacing(4),
+    left: theme.spacing(4),
   },
 }));
 
@@ -92,4 +98,36 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
     </>
   );
 };
+
+//Attempt at implementing Sort Button
+
+/*
+<Fab
+        color="secondary"
+        variant="extended"
+        onClick={() =>setDrawerOpen(true)}
+        className={classes.fab2}
+      >
+        <NavigationIcon />
+        Similar
+      </Fab>
+      <Drawer anchor="bottom" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <SimilarMovies movie={movie} />
+      </Drawer>
+
+
+      <Fab
+        color="secondary"
+        variant="extended"
+        onClick={() =>setDrawerOpen(true)}
+        className={classes.fab}
+      >
+        <NavigationIcon />
+        Reviews
+      </Fab>
+      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <MovieReviews movie={movie} />
+      </Drawer>
+*/
+
 export default  MovieDetails ;

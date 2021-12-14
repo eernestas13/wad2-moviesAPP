@@ -17,14 +17,20 @@ import Grid from "@material-ui/core/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { MoviesContext } from "../../contexts/moviesContext";
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import LocalMoviesIcon from "@material-ui/icons/LocalMovies";
+//import LocalMoviesIcon from '../components/cardIcons/similarMovies';
+
 
 const useStyles = makeStyles({
-  card: { maxWidth: 345 },
+  card: { maxWidth: 345, maxHeight: 800 }, "&:hover": {display: "inline-block"},
   media: { height: 500 },
   avatar: {
-    backgroundColor: "rgb(255, 0, 0)",
+    backgroundColor: "rgb(204, 204, 204)",
   },
   avatar2: {
+    backgroundColor: "rgb(255, 0, 0)",
+  },
+  avatar3: {
     backgroundColor: "rgb(255, 0, 0)",
   },
 });
@@ -33,6 +39,7 @@ export default function MovieCard({ movie, action }) {
   const classes = useStyles();
   const { favorites, addToFavorites } = useContext(MoviesContext);
   const { watchlists, addToWatchlists} = useContext(MoviesContext);
+  const { similars, goSimilars} = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -41,10 +48,10 @@ export default function MovieCard({ movie, action }) {
   }
 
   /*
-  if (watchlists.find((id) => id === movie.id)) {
-    movie.watchlist = true;
+  if (similars.find((id) => id === movie.id2)) {
+    movie.similars = true;
   } else {
-    movie.watchlist = false
+    movie.similars = false
   }
   */
   
@@ -57,6 +64,11 @@ export default function MovieCard({ movie, action }) {
   const handleAddToWatchlist= (e) => {
     e.preventDefault();
     addToWatchlists(movie);
+  };
+
+  const handleSimilarMovies= (e) => {
+    e.preventDefault();
+    goSimilars(movie);
   };
 
   return (
@@ -74,6 +86,13 @@ export default function MovieCard({ movie, action }) {
         movie.watchlist ? (
           <Avatar className={classes.avatar2}>
             <PlaylistAddIcon />
+          </Avatar>
+        ) : null
+      }
+      avatar3={
+        movie.similar ? (
+          <Avatar className={classes.avatar3}>
+            <LocalMoviesIcon />
           </Avatar>
         ) : null
       }
@@ -95,24 +114,31 @@ export default function MovieCard({ movie, action }) {
         <Grid container>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              <CalendarIcon fontSize="medium" />
+              {" "}{movie.release_date}{" "}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
+              <StarRateIcon fontSize="medium" />
+              {"Rating: "} {movie.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions >
         {action(movie)}
 
+          
+
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
+          <Button variant="contained" size="small" color="Black">
+            More Info
+          </Button>
+        </Link>
+        <Link to={`/similar/${movie.id}/`}>
+          <Button variant="contained" size="small" color="Black">
+            Similar Movies
           </Button>
         </Link>
       </CardActions>

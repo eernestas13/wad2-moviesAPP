@@ -10,17 +10,19 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
-import { getGenres } from "../../api/tmdb-api";
+import img from '../../images/download.png'
+import { getGenres, getMovies2 } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import { CardActions } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    backgroundColor: "rgb(204, 204, 0)",
+    backgroundColor: "rgb(204, 204, 204)",
   },
-  media: { height: 300 },
+  media: { height: 495 },
 
   formControl: {
     margin: theme.spacing(1),
@@ -32,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 export default function FilterMoviesCard(props) {
   const classes = useStyles();
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
+  //const { data2 } = useQuery("movies", getMovies2);
 
   if (isLoading) {
     return <Spinner />;
@@ -41,7 +44,10 @@ export default function FilterMoviesCard(props) {
     return <h1>{error.message}</h1>;
   }
   const genres = data.genres;
+  //const movies = data2.movies;
+  
   genres.unshift({ id: "0", name: "All" });
+  //movies.unshift({ id: "All", name: "All" });
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
@@ -56,24 +62,28 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value);
   };
 
+  const handleSortMovie = (e, props) => {
+    handleChange(e, "movie", e.target.value);
+  }
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
+          <SearchIcon fontSize="medium" />
+          <strong>  Filter Movies</strong>
         </Typography>
         <TextField
       className={classes.formControl}
       id="filled-search"
-      label="Search field"
+      label="Search..."
       type="search"
       value={props.titleFilter}
       variant="filled"
       onChange={handleTextChange}
     />
         <FormControl className={classes.formControl}>
-          <InputLabel id="genre-label">Genre</InputLabel>
+          <InputLabel id="genre-label">Genre:</InputLabel>
           <Select
       labelId="genre-label"
       id="genre-select"
@@ -89,6 +99,7 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+        
       </CardContent>
       <CardMedia
         className={classes.media}
@@ -97,11 +108,31 @@ export default function FilterMoviesCard(props) {
       />
       <CardContent>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
+         
+          
         </Typography>
       </CardContent>
     </Card>
   );
 }
+
+//Attempt at implementing a Sort Button
+/*
+<FormControl className={classes.formControl}>
+          <Button id="sort movies">Sort</Button>
+          <Select
+      labelId="sort movies"
+      id="sort movies"
+      value={props.sortMovie}
+      onChange={handleSortMovie}
+    >
+            {movies.sort((movie) => {
+              return (
+                
+                  {movie}
+                
+              );
+            })}
+          </Select>
+        </FormControl>
+*/
