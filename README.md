@@ -53,41 +53,41 @@ npm install bootstrap react-bootstrap
 
 No changes were made to storybook.
 
-![](./images/storybook.png)
+![](./src/images/storybook.png)
 
 ### UI Design.
 
 >Showcase of modified webpage template. 
 
-![ ](./images/homepage.png) (Zoom at 75%)
+![ ](./src/images/homepage.png) (Zoom at 75%)
 
 >New app page, Top Rated. This page shows the highest rated movies.
 
-[ ](./images/toprated.png) (Zoom at 75%)#
+[ ](./src/images/toprated.png) (Zoom at 75%)#
 
 >New app page, Popular. This page shows the most popular movies.
 
-[ ](./images/popular.png) (Zoom at 75%)
+[ ](./src/images/popular.png) (Zoom at 75%)
 
 >New app page, Upcoming. This page shows upcoming movies.
 
-[ ](./images/upcoming.png) (Zoom at 75%)
+[ ](./src/images/upcoming.png) (Zoom at 75%)
 
 >New app page, Now Playing. This page shows the movies that are in cinemas now.
 
-[ ](./images/nowplaying.png) (Zoom at 75%)
+[ ](./src/images/nowplaying.png) (Zoom at 75%)
 
 >New app page, Watchlist. This page shows the users chosen watchlisted movies.
 
-[ ](./images/watchlist.png) (Zoom at 75%)
+[ ](./src/images/watchlist.png) (Zoom at 75%)
 
 >New app page, TLogin. This page allows a user to log into the website.
 
-[ ](./images/login.png) (Zoom at 75%)
+[ ](./src/images/login.png) (Zoom at 75%)
 
 >New app page, Sign Up. This page allows the user to sign up.
 
-[ ](./images/signup.png) (Zoom at 75%)
+[ ](./src/images/signup.png) (Zoom at 75%)
 
 ### Routing.
 
