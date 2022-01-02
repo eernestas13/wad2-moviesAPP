@@ -70,26 +70,45 @@ const SignupPage = props =>  {
     // }
 
 
-        return (
-            <>
-                <h2>SignUp page</h2>
-                <p>You must register a username and password to log in </p>
-                <input value={userName} placeholder="user name" onChange={e => {
-                    setUserName(e.target.value);
-                }}></input><br />
-                <input value={password} type="password" placeholder="password" onChange={e => {
-                    setPassword(e.target.value);
-                }}></input><br />
-                <input value={passwordAgain} type="password" placeholder="password again" onChange={e => {
-                    setPasswordAgain(e.target.value);
-                }}></input><br />
-                {/* Login web form  */}
-                <button onClick={register}>Register</button>
-            </>
-        );
+    return (
+        <>
+        <Card>
+        <Card.Body>
+            <Form>
+            <h2 className="text-center mb-4">Sign Up</h2>
+            <p className="text-center mb-4">You must register a username and password to log in </p>
     
-            };      
-export default SignupPage;
+            <Form.Group className="text-center mb-4" id="email">
+            <Form.Label>Username</Form.Label>
+            <input value={userName} placeholder="user name" onChange={e => {
+                setUserName(e.target.value);
+            }}></input><br />
+            </Form.Group>
+    
+            <Form.Group className="text-center mb-4" id="email">
+            <Form.Label>Password</Form.Label>
+            <input value={password} type="password" placeholder="password" onChange={e => {
+                setPassword(e.target.value);
+            }}></input><br />
+            </Form.Group>
+    
+            <Form.Group className="text-center mb-4" id="email">
+            <Form.Label>Password Again</Form.Label>
+            <input value={passwordAgain} type="password" placeholder="password again" onChange={e => {
+                setPasswordAgain(e.target.value);
+            }}></input><br />
+            </Form.Group>
+    
+            {/* Login web form  */}
+            <Button onClick={register}>Register</Button>
+            </Form>
+            </Card.Body>
+            </Card>
+        </>
+    );
+    
+        };
+    export default SignupPage;
 //         <>
 //         <Card>
 //             <Card.Body>
@@ -119,3 +138,44 @@ export default SignupPage;
         
 //     )
 // }
+
+
+
+
+
+
+/*
+<input value={password} type="password" placeholder="password" onChange={e => {
+                    setPassword(e.target.value);
+                }}></input><br />
+
+                <input value={userName} placeholder="user name" onChange={e => {
+                    setUserName(e.target.value);
+                }}></input><br />
+                
+                <input value={passwordAgain} type="password" placeholder="password again" onChange={e => {
+                    setPasswordAgain(e.target.value);
+                }}></input><br />
+
+
+
+                <Form.Group className="text-center mb-4" >
+                         <Form.Label>Username</Form.Label>
+                         <Form.Control id="username" type="user name" required onChange={e => {
+                    setUserName(e.target.value); }}/>
+                     </Form.Group>
+
+                
+                        <Form.Group className="text-center mb-4" >
+                         <Form.Label>Password</Form.Label>
+                         <Form.Control id="password" type="password" required onChange={e => {
+                    setPassword(e.target.value); }} />
+                     </Form.Group>
+
+                    
+                     <Form.Group className="text-center mb-4" id="password-confirm">
+                         <Form.Label>Password Confirmation</Form.Label>
+                         <Form.Control input value={passwordAgain} type="password" onChange={e => {
+                    setPasswordAgain(e.target.value); }}/>
+                     </Form.Group>
+*/
