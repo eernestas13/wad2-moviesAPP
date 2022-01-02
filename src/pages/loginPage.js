@@ -61,6 +61,7 @@ import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../contexts/authContext";
 import { Link } from "react-router-dom";
+import { Form, Button, Card, Alert } from 'react-bootstrap'
 
 const LoginPage = props => {
     const context = useContext(AuthContext)
@@ -80,7 +81,9 @@ const LoginPage = props => {
     }
     return (
         <>
-            <h2>Login page</h2>
+        <Card>
+        <Card.Body>
+        <h2 className="text-center mb-4">Login</h2>
             <p>You must log in to view the protected pages </p>
             <input id="username" placeholder="user name" onChange={e => {
                 setUserName(e.target.value);
@@ -92,6 +95,8 @@ const LoginPage = props => {
             <button onClick={login}>Log in</button>
             <p>Not Registered?
                 <Link to="/signup">Sign Up!</Link></p>
+                </Card.Body>
+                </Card>
         </>
     );
 };
