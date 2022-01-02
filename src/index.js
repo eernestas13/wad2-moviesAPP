@@ -54,7 +54,7 @@ const App = () => {
         <Route path="/login" component={LoginPage} />
 
         <Route path="/movies/:id" component={MoviePage} />
-        <PrivateRoute exact path="/" component={HomePage} />
+        <Route path="/" component={HomePage} />
         <Redirect from="*" to="/" />
         <Route path="/similar/:id" component={SimilarMoviesPage} />
         <Route path="/reviews/:id" component={MovieReviewPage} />
@@ -66,5 +66,6 @@ const App = () => {
     </AuthProvider>
   );
 };
+//<PrivateRoute exact path="/" component={HomePage} />
 
 ReactDOM.render(<App />, document.getElementById("root"));

@@ -186,7 +186,11 @@ export const getUpcomingMovie = (args) => {
   };
 
   
-
+/* ,{headers: {
+        'Authorization': window.localStorage.getItem('token')
+      }
+    }
+    */
 
 
   
