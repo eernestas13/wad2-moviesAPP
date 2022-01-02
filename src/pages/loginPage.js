@@ -83,18 +83,29 @@ const LoginPage = props => {
         <>
         <Card>
         <Card.Body>
+            <Form>
         <h2 className="text-center mb-4">Login</h2>
-            <p>You must log in to view the protected pages </p>
+            <p className="text-center mb-4">You must log in to view the protected pages </p>
+
+            <Form.Group className="text-center mb-4" id="email">
+            <Form.Label>Username</Form.Label>
             <input id="username" placeholder="user name" onChange={e => {
                 setUserName(e.target.value);
             }}></input><br />
+            </Form.Group>
+
+            <Form.Group className="text-center mb-4" id="email">
+            <Form.Label>Password</Form.Label>
             <input id="password" type="password" placeholder="password" onChange={e => {
                 setPassword(e.target.value);
             }}></input><br />
+            </Form.Group>
+
             {/* Login web form  */}
-            <button onClick={login}>Log in</button>
-            <p>Not Registered?
-                <Link to="/signup">Sign Up!</Link></p>
+            <Button onClick={login}>Log in</Button>
+            <p className="text-center mb-4">Not Registered?
+                <Link to="/signup"> Sign Up!</Link></p>
+                </Form>
                 </Card.Body>
                 </Card>
         </>
