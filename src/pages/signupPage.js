@@ -3,6 +3,18 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { AuthContext, useAuth } from '../contexts/authContext'
 import { Link, useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import { Save } from '@material-ui/icons'
+
+
+export const signup = (username, password) => {
+    return Save('/api/seedData/users?action=register', {
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({ username: username, password: password})
+    }).then(res => res.json())
+};
 
 
 const SignupPage = props =>  {
@@ -26,8 +38,11 @@ const SignupPage = props =>  {
         if (password.length > 0 && password === passwordAgain) {
             context.register(userName, password);
             setRegistered(true);
+    //        signup(true);
         }
     }
+
+    
 
     const { from } = props.location.state || { from: { pathname: "/" } };
 
