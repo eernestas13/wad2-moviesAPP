@@ -3,7 +3,7 @@ import { login, signup } from '../api/movie-api';
 import { auth } from '../components/firebase'
 
 
-/*
+
 export const AuthContext = createContext(null);
 
 const AuthContextProvider = (props) => {
@@ -31,11 +31,24 @@ const AuthContextProvider = (props) => {
         console.log(result.code);
         return (result.code == 201) ? true : false;
     };
+    return (
+        <AuthContext.Provider
+            value={{
+                isAuthenticated,
+                authenticate,
+                register,
+                //signout,
+                userName
+            }}
+        >
+            {props.children}
+        </AuthContext.Provider>
+    );
+};
+
+export default AuthContextProvider;
 
 
-}
-
-*/
 
 
 
@@ -48,6 +61,9 @@ const AuthContextProvider = (props) => {
 
 
 
+
+
+/*
 
 const AuthContext = React.createContext()
 
@@ -91,3 +107,4 @@ export function AuthProvider({children}) {
     )
 }
 
+*/

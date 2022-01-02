@@ -17,3 +17,13 @@ export const signup = (username, password) => {
         body: JSON.stringify({ username: username, password: password})
     }).then(res => res.json())
 };
+
+export const addToFavoriteMovie = (userName, id) => {
+    return fetch(`api/users/${userName}/favourites`, {
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        method: 'post',
+        body: JSON.stringify({ userName: userName, id: id})
+    }).then(res => res.json())
+}

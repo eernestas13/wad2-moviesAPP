@@ -18,9 +18,11 @@ import SimilarMoviesPage from "./pages/similarMoviesPage";
 import NowPlayingMoviesPage from "./pages/nowPlayingMoviesPage";
 import AuthenticatePage from "./pages/authenticatePage";
 import SignupPage from "./pages/signupPage";
-import { AuthProvider } from "./contexts/authContext";
+//import { AuthProvider } from "./contexts/authContext";
+import  AuthProvider  from "./contexts/authContext";
 import LoginPage from "./pages/loginPage";
 import PrivateRoute from "./components/privateRoute";
+import AuthHeader from "./contexts/authHeader";
 
 
 const queryClient = new QueryClient({
@@ -35,9 +37,11 @@ const queryClient = new QueryClient({
 
 const App = () => {
   return (
-    <AuthProvider>
+    
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+    <AuthProvider>
+      <AuthHeader/>
       <SiteHeader />      {/* New Header  */}
       <MoviesContextProvider>
             {" "}
@@ -54,16 +58,18 @@ const App = () => {
         <Route path="/login" component={LoginPage} />
 
         <Route path="/movies/:id" component={MoviePage} />
-        <Route path="/" component={HomePage} />
+        <PrivateRoute exact path="/" component={HomePage} />
         <Redirect from="*" to="/" />
         <Route path="/similar/:id" component={SimilarMoviesPage} />
         <Route path="/reviews/:id" component={MovieReviewPage} />
       </Switch>
       </MoviesContextProvider>
+      </AuthProvider>
+
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-    </AuthProvider>
+    
   );
 };
 //<PrivateRoute exact path="/" component={HomePage} />
