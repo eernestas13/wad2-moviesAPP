@@ -1,108 +1,102 @@
-# Assignment 1 - ReactJS app.
-
-Name: Ernestas Trakys - 20090282
-
-## Overview.
-
-This project is a web page that hosts a TMDB Client. The Client uses TMDB's API's to display a variety of tabs such has Top Rated/Popular movies. User's can add these movies to their favourites and a watchlist. They can also click into a specific movie and find more details about the movie.
-
-The Client also allows users to login/create accounts using Firebase.
-
-### Features.
-
-+ Added 4 new pages.
+# Assignment 2 - Web API.
+​
+Name: Ernestas Trakys
+​
+## Features.
+​
  
-+ Fixed Watchlist page, movies get added and user has option to remove from watchlist along with an option of writing a review.
+ + Feature 1 - Attempt on integrating FireBase as a method of authentication, reverted to JWT.
+​
+## Installation Requirements
+​
+Describe what needs to be on the machine to run the API.
+​
+```bat
+git clone http:\myrepo.git
+```
+​
+followed by installation
+​
+```bat
+git install
+```
+​
+## API Configuration
+Describe any configuration that needs to take place before running the API.
 
-+ Changed appearance of Filter Card Menu Bar, Card Icons.
+​.env file is needed so that passwords/key can remain hidden when commiting to your repository. Your app access these keys/passwords that are used to access your DB or TMDB.
 
-+ Attempt to add Sort Movies Alphabetically onto Filter card.
+```bat
+NODE_ENV=development
+PORT=8080
+HOST=
+SECRET=YourJWTSecret
 
-+ Attempt to display similar movies with button on movie card.
+MONGO_DB=mongodb:YourMongoURL
+SEED_DB=True
 
-+ User login / signup using firebase
+TMDB_KEY=YourKey
+REACT_APP_TMDB_KEY=YourKey
+```
+​
+​
+## API Design
+Give an overview of your web API design, perhaps similar to the following: 
+​
+| -- | -- | -- | -- | -- 
+| /api/movies/tmdb/movies |Gets a list of movies | 
 
-## Setup requirements.
+| /api/movies/tmdb/upcoming | Gets a list of upcoming movies |
 
-User Basic Authentication -- npm install --save express-session
+| /api/movies/tmdb/toprated | Gets a list of toprated movies |
 
-User signup/login         -- npm install firebase
-npm install bootstrap react-bootstrap
+| /api/movies/tmdb/popular | Gets a list of popular movies |
 
+| /api/movies/tmdb/nowplaying | Gets a list of nowplaying movies |
 
-## API endpoints.
+| /:userName/favourites | Gets the favourites selected by the current user |
 
-+ Added popular page - /movie/popular API endpoint. 
-    Displays popular movies.
-    This page allows the user to add movies to favourites and watchlist.
+| /:userName/watchlists | Gets the watchlist selected by the current user |
 
-+ Added top rated page - /movie/top_rated API endpoint.
-    Displays top rated movies.
-    This page allows the user to add movies to favourites and watchlist.
+| / | Post used to register or authenticate a user |
 
-+ Attempt on similar page - /movie/similar API endpoint.
-    This page would route from any movie card to display similar movies based on genre's
+| /:id | Put used to update a user |
 
-+ Added now playing page - /movie/now_playing API endpoint.
-    Displays movies that are being played now.
-    This page allows the user to add movies to favourites and watchlist.
+| /:userName/favourites | Post used to add a favourite |
 
-## App Design.
+| /:userName/favourites | Post used to add a watchlist |
 
-### Component catalogue.
+​
+​
+## Security and Authentication
+Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
 
-No changes were made to storybook.
+ I used JWT, passports to check against the seedData inside of the DB. If a users credentials are there, they can pass login.   
+ 
+ I attempted to bring in signup that writes to the DB of new user credential registration.
+ 
+ I have the homepage protected (/ ), anytime a user visits the website they are brought to the homepage and a check is done to see if they are signed in or not,
+ they get brought to the loginpage, where they can login or click a link to get directed to the signup page.
+​
+## Integrating with React App
+​
+Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
 
-![](./images/storybook.png)
+​My React app pulls requests from a proxy linked to my API app. It uses a fetch to access the API to retrieve info from a TMDB link to display movies.
 
-### UI Design.
-
->Showcase of modified webpage template. 
-
-![ ](./images/homepage.png) (Zoom at 75%)
-
->New app page, Top Rated. This page shows the highest rated movies.
-
-[ ](./images/toprated.png) (Zoom at 75%)#
-
->New app page, Popular. This page shows the most popular movies.
-
-[ ](./images/popular.png) (Zoom at 75%)
-
->New app page, Upcoming. This page shows upcoming movies.
-
-[ ](./images/upcoming.png) (Zoom at 75%)
-
->New app page, Now Playing. This page shows the movies that are in cinemas now.
-
-[ ](./images/nowplaying.png) (Zoom at 75%)
-
->New app page, Watchlist. This page shows the users chosen watchlisted movies.
-
-[ ](./images/watchlist.png) (Zoom at 75%)
-
->New app page, TLogin. This page allows a user to log into the website.
-
-[ ](./images/login.png) (Zoom at 75%)
-
->New app page, Sign Up. This page allows the user to sign up.
-
-[ ](./images/signup.png) (Zoom at 75%)
-
-### Routing.
-
-+ /movies/upcoming - displays upcoming movies
-+ /movies/popular - displays popular movies
-+ /movies/nowplaying - displays now playing movies
-+ /movies/toprated - displays top rated movies
-+ /login - page for user login
-+ /signup - page for user signup
-+ /similar:id - displays similar movies of a particular movie
-
-+ / - arriving at homepage only prompts the user for either login or signup, this protects the website from 'unauthorised' users.
-
-## Independent learning (If relevant).
-
-FireBase, I researched this to provide the client with authentication. Firebase is used to store sign-ups and used for login's. 
-
-- Help used : https://medium.com/@bariskarapinar/firebase-authentication-web-app-javascript-3165ebc92b68 , https://www.youtube.com/watch?v=iKlWaUszxB4
+~~~Javascript
+export const getMovies = () => {
+  return fetch(
+     '/api/movies/tmdb/movies?page=2&limit=10',{headers: {
+       'Authorization': window.localStorage.getItem('token')
+    }
+  }
+  )
+    .then(res => res.json())
+};
+​
+~~~
+​
+​
+## Independent learning
+​Attempt on integrating FireBase instead of JWT as a means of authentication.
