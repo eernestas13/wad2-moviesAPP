@@ -23,6 +23,7 @@ const AuthContextProvider = (props) => {
             setToken(result.token);
             setIsAuthenticated(true);
             setUserName(username);
+            setAuthToken(authToken);
         }
     };
 

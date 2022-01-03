@@ -104,7 +104,7 @@ const MoviesContextProvider = (props) => {
         ) )
     };
 
-    const addToWatchList = (movie) => {
+    const addToWatchlists = (movie) => {
         setWatchList([...watchLists,movie.id])
         console.log([...watchLists,movie.id]);
     };
@@ -130,7 +130,7 @@ const MoviesContextProvider = (props) => {
                 addToFavorites,
                 removeFromFavorites,
                 addReview,
-                addToWatchList,
+                addToWatchlists,
                 removeFromWatchLists
             }}
         >
